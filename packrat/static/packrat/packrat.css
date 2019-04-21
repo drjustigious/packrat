@@ -1,0 +1,175 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.pr-greenbox {
+    background-color: #336644;
+    color: #EEEEEE;
+}
+
+.pr-text-green {
+    color: #1a3322;
+}
+
+.pr-logo-green {
+    color: #336644;
+}
+
+.pr-logo-blue {
+    color: #2b5980;
+}
+
+.pr-logo-red {
+    color: #b32f1d;
+}
+
+
+.pr-list {
+    background-color: #fafafa;
+    border-radius: 16px;
+    padding: 4px;
+}
+
+.pr-new-loadout {
+    border-radius: 16px;
+    border-style: dashed;
+    border-width: 2px;
+    border-color: #ccc;
+    margin: 8px;
+    padding: 16px;
+
+    cursor: pointer;
+
+}
+
+.pr-new-loadout:hover {
+    border-color: #aaa;
+    background-color: #e4f2da;
+}
+
+.pr-loadout {
+    margin: 8px;
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    -webkit-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+}
+
+.pr-loadout:hover .pr-loadout-body.contracted {
+    background-color: #f4f8f0;
+}
+
+.pr-loadout-heading {
+    font-weight: bold;
+    color: #1a3322;
+    text-align: left;
+
+    height: 36px;
+
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.pr-loadout:hover .pr-loadout-heading {
+    background-color:  #e4f2da;
+    cursor: pointer;
+}
+
+.pr-loadout-body {
+    height: 160px;
+    transition: height 0.2s ease-out;
+    position: relative;
+}
+
+.pr-loadout-body.contracted {
+    height: 0px;
+}
+
+.pr-loadout-details {
+    --left-column-width: 220px;
+    --right-column-width: calc(100% - var(--left-column-width));
+
+    text-align: left;
+    float: left;
+}
+
+
+
+.pr-loadout-details.left {
+    width: var(--left-column-width);
+
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: #ccc;
+}
+.pr-loadout-details.right {
+    width: var(--right-column-width);
+    max-height: 256px;
+    padding-left: 20px;
+}
+
+.pr-loadout-table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: left;
+}
+
+.pr-loadout-details-column.left {
+    color: #000;
+    font-weight: normal;
+    width: 40%;
+    height: 26px;
+}
+
+.pr-loadout-details-column.right {
+    color: #336644;
+}
+
+.pr-loadout-buttonbar {
+    position: absolute;
+    left: 10px;
+    bottom: 4px;
+}
+
+.pr-loadout-button {
+    float: left;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #ddd;
+    margin: 4px;
+    margin-right: 8px;
+    height: 24px;
+    width: 40px;
+    padding: 2px;
+
+    -webkit-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
+}
+
+.pr-loadout-button:hover {
+    background-color: #f9f9f9;
+    cursor: pointer;
+
+    transition: all 5.5s ease-out;
+}
+
+.junk-class {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+
+    -webkit-column-gap: 32px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 32px; /* Firefox */
+    column-gap: 32px;
+
+    -webkit-column-rule: 1px solid #33664422; /* Chrome, Safari, Opera */
+    -moz-column-rule: 1px solid #33664422; /* Firefox */
+    column-rule: 1px solid #33664422;
+
+}
+
