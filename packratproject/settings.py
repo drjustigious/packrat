@@ -25,7 +25,10 @@ SECRET_KEY = 'l)l)lw06vgpo7=tpqfd*)n5j#!y1@a4h*jlfq0yvf+-x*6^sq1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['pack-rat-238215.appspot.com']
+ALLOWED_HOSTS = [
+    'pack-rat-238215.appspot.com',
+    'localhost'
+]
 
 
 # Application definition
