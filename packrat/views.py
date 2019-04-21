@@ -3,4 +3,10 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
+    welcomePhrase = "Hello, world."
+
+    context = {
+        'welcomePhrase': welcomePhrase
+    }
+
+    return render(request, 'packrat/index.html', context)
