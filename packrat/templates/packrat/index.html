@@ -1,133 +1,71 @@
-{% load static %}
+{% extends 'packrat/base.html' %}
 
-<!DOCTYPE html>
-<html>
+{% block content %}
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="mainContent">
+    <!-- Title and logo stuff -->
+    <h2 class="w3-wide">PACK RAT</h2>
+    <i class="w3-xlarge fas fa-hiking pr-logo-green"></i>
+    <p class="w3-opacity">Expedition loadout planner</p>
+    
+    <br>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="pr-list">
+        <div title="Create a new loadout" class="pr-new-loadout">
+            <p>New loadout</p>
+            <p><i class="w3-xlarge fas fa-plus-circle pr-logo-green"></i></p>
+        </div>
 
-<!-- Load styles -->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="{% static 'packrat/packrat.css' %}">
-
-<!-- Load JavaScipt -->
-<script src="{% static 'packrat/packrat.js' %}"></script>
-
-
-<head>
-    <title>Pack Rat</title>
-</head>
-
-
-<body>
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar pr-greenbox w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right w3-hover-black" href="javascript:void(0)" onclick="toggleMenuVisibility('miniMenu');" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-home"></i> Home</a>
-    <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-black"><i class="fa fa-info-circle"></i>  Info</a>
-  </div>
-</div>
-
-<!-- Navbar on small screens -->
-<div id="miniMenu" class="w3-bar-block pr-green w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="toggleMenuVisibility('miniMenu');"><i class="fa fa-info-circle"></i>  Info</a>
-</div>
-
-
-
-
-<!-- Page content -->
-<div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-    <!-- Main content -->
-    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="mainContent">
-            <!-- Title and logo stuff -->
-            <h2 class="w3-wide">PACK RAT</h2>
-            <i class="w3-xlarge fas fa-hiking pr-logo-green"></i>
-            <p class="w3-opacity">Expedition loadout planner</p>
-            
-            <br>
-
-            <div class="pr-list">
-                <div title="Create a new loadout" class="pr-new-loadout">
-                    <p>New loadout</p>
-                    <p><i class="w3-xlarge fas fa-plus-circle pr-logo-green"></i></p>
-                </div>
-
-            
-                <div class="pr-loadout panel panel-default" onmousedown="toggleLoadoutDetails(event, 'testLoadout01');">
-                    <div title="Loadout details" class="pr-loadout-heading panel-heading">
-                        <span><i class="fas fa-briefcase pr-logo-green w3-medium" style="width:28px;"></i> Old loadout #1</span> <i class="fas fa-caret-down pr-logo-green w3-large" style="float:right;"></i>
-                    </div>
-                    <div class="pr-loadout-body panel-body" id="testLoadout01">
-
-                        <div class="pr-loadout-details left">
-                            <table class="pr-loadout-table">
-                                <tr>
-                                    <td class="pr-loadout-details-column left">Updated</td>
-                                    <td class="pr-loadout-details-column right">15.04.2019 20:46</td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-loadout-details-column left">Full weight</td>
-                                    <td class="pr-loadout-details-column right">22.4 kg</td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-loadout-details-column left">Base weight</td>
-                                    <td class="pr-loadout-details-column right">19.7 kg</td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-loadout-details-column left">Cost</td>
-                                    <td class="pr-loadout-details-column right">8.90 €</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="pr-loadout-details right">
-                            A balanced 48 h pack including provisions for sleeping in a comfy tent and on-site water acquisition. 5 kg of photo gear and some sausages also accounted for. This description is 200 characters long.
-                        </div>
-
-                        <div class="w3-row pr-loadout-buttonbar">
-                            <div class="pr-loadout-button" title="View loadout"><i class="fas fa-th-list pr-logo-green w3-medium"></i></div>
-                            <div class="pr-loadout-button" title="Copy loadout"><i class="fas fa-clone pr-logo-blue w3-medium"></i></div>
-                            <div class="pr-loadout-button" title="Delete loadout"><i class="fas fa-times-circle pr-logo-red w3-medium"></i></div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="pr-loadout w3-card panel panel-default" onmousedown="toggleLoadoutDetails(event, 'testLoadout02');">
-                    <div class="pr-loadout-heading panel-heading">
-                        <span><i class="fas fa-briefcase pr-logo-green w3-medium" style="width:28px;"></i> Old loadout #2</span> <i class="fas fa-caret-down pr-logo-green w3-large" style="float:right;"></i>
-                    </div>
-                    <div class="pr-loadout-body panel-body" id="testLoadout02">
-                        <p>A balanced 48 h pack including provisions for sleeping in a comfy tent and on-site water acquisition. 5 kg of photo gear and some sausages also accounted for. This description is 200 characters long.</p>
-                    </div>
-                </div>
+    
+        <div class="pr-loadout panel panel-default" onmousedown="toggleLoadoutDetails(event, 'testLoadout01');">
+            <div title="Loadout details" class="pr-loadout-heading panel-heading">
+                <span><i class="fas fa-briefcase pr-logo-green w3-medium" style="width:28px;"></i> Old loadout #1</span> <i class="fas fa-caret-down pr-logo-green w3-large" style="float:right;"></i>
             </div>
+            <div class="pr-loadout-body panel-body" id="testLoadout01">
+
+                <div class="pr-loadout-details left">
+                    <table class="pr-loadout-table">
+                        <tr>
+                            <td class="pr-loadout-details-column left">Updated</td>
+                            <td class="pr-loadout-details-column right">15.04.2019 20:46</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-loadout-details-column left">Full weight</td>
+                            <td class="pr-loadout-details-column right">22.4 kg</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-loadout-details-column left">Base weight</td>
+                            <td class="pr-loadout-details-column right">19.7 kg</td>
+                        </tr>
+                        <tr>
+                            <td class="pr-loadout-details-column left">Cost</td>
+                            <td class="pr-loadout-details-column right">8.90 €</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="pr-loadout-details right">
+                    A balanced 48 h pack including provisions for sleeping in a comfy tent and on-site water acquisition. 5 kg of photo gear and some sausages also accounted for. This description is 200 characters long.
+                </div>
+
+                <div class="w3-row pr-loadout-buttonbar">
+                    <div class="pr-loadout-button" title="View loadout"><i class="fas fa-th-list pr-logo-green w3-medium"></i></div>
+                    <div class="pr-loadout-button" title="Copy loadout"><i class="fas fa-clone pr-logo-blue w3-medium"></i></div>
+                    <div class="pr-loadout-button" title="Delete loadout"><i class="fas fa-times-circle pr-logo-red w3-medium"></i></div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="pr-loadout w3-card panel panel-default" onmousedown="toggleLoadoutDetails(event, 'testLoadout02');">
+            <div class="pr-loadout-heading panel-heading">
+                <span><i class="fas fa-briefcase pr-logo-green w3-medium" style="width:28px;"></i> Old loadout #2</span> <i class="fas fa-caret-down pr-logo-green w3-large" style="float:right;"></i>
+            </div>
+            <div class="pr-loadout-body panel-body" id="testLoadout02">
+                <p>A balanced 48 h pack including provisions for sleeping in a comfy tent and on-site water acquisition. 5 kg of photo gear and some sausages also accounted for. This description is 200 characters long.</p>
+            </div>
+        </div>
     </div>
-  
-<!-- End Page Content -->
+        
 </div>
-
-
-
-
-    <!-- Footer -->
-    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-        <p class="w3-medium pack-rat-version-info">Pack Rat</p>
-        <i class="w3-medium fas fa-code-branch pr-text-green"></i> <a class="w3-small pr-text-green" href="#"> View source on GitHub</a>
-        <p class="w3-small">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-
-</body>
-
-
-<!-- Print version and author info at the bottom of the page -->
-<script src="{% static 'packrat/packrat-afterwork.js' %}"></script>
-
-</html>
+{% endblock %}

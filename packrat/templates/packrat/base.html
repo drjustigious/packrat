@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Load styles -->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'packrat/packrat.css' %}">
+
+<!-- Load JavaScipt -->
+<script src="{% static 'packrat/packrat.js' %}"></script>
+
+<head>
+    <title>Pack Rat</title>
+</head>
+
+
+<body>
+    <!-- Navbar -->
+    <div class="w3-top">
+      <div class="w3-bar pr-greenbox w3-card">
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right w3-hover-black" href="javascript:void(0)" onclick="toggleMenuVisibility('miniMenu');" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-home"></i> Home</a>
+        <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-black"><i class="fa fa-info-circle"></i>  Info</a>
+      </div>
+    </div>
+
+    <!-- Navbar on small screens -->
+    <div id="miniMenu" class="w3-bar-block pr-green w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+      <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="toggleMenuVisibility('miniMenu');"><i class="fa fa-info-circle"></i>  Info</a>
+    </div>
+
+    <!-- Page content -->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+        <p class="w3-medium"><b>Pack Rat</b></p>
+        <p class="w3-small">A web app demonstration by Jussi Tikkanen</p>
+        <p class="w3-small">
+            <b>Powered by</b><br>
+            <a href="https://www.djangoproject.com/" target="_blank">Django</a> |
+            <a href="https://cloud.google.com/appengine/" target="_blank">Google App Engine</a> |
+            <a href="https://cloud.google.com/sql/docs/" target="_blank">Google Cloud SQL</a> |
+            <a href="https://www.mysql.com/" target="_blank">MySQL</a> |
+            <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">W3.CSS</a>
+        </p>
+        <i class="w3-medium fas fa-code-branch pr-text-green"></i> <a class="w3-small pr-text-green" href="https://github.com/drjustigious/packrat"> View source on GitHub</a>
+    </footer>
+
+</body>
+
+
+<!-- Print version and author info at the bottom of the page -->
+<script src="{% static 'packrat/packrat-afterwork.js' %}"></script>
+
+</html>
