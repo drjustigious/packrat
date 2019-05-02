@@ -1,6 +1,16 @@
 /*
  * This script must load AFTER the user interface elements are defined in HTML.
  */
+function toggleMenuVisibility(elementID) {
+    var x = document.getElementById(elementID);
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    }
+    else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
 
 var coll = document.getElementsByClassName("pr-loadout-collapsible");
 var i;
