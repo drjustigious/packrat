@@ -1,44 +1,42 @@
-// Used to toggle the menu on small screens when clicking on the menu button
+/*
+ * This script must load AFTER the user interface elements are defined in HTML.
+ */
 
-function toggleMenuVisibility(elementID) {
-    var x = document.getElementById(elementID);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    }
-    else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
-function toggleVisibility(elementID) {
-    var x = document.getElementById(elementID);
-    if (x.style.display == "none") {
-        x.style.display = "block";
-    }
-    else { 
-        x.style.display = "none";
-    }
-}
-
-
-var coll = document.getElementsByClassName("collapsible");
+var coll = document.getElementsByClassName("pr-loadout-collapsible");
 var i;
 
-console.log("Writ.");
-
 for (i = 0; i < coll.length; i++) {
-    console.log("Registering", coll[i]);
 
-    coll[i].addEventListener("onclick", function() {
-
-        console.log("Click!");
+    coll[i].addEventListener("click", function() {
 
         this.classList.toggle("active");
         var content = this.nextElementSibling;
+        content.classList.toggle("uncollapsed");
+
+        //var caret = this.children;
+        var caret = this.querySelector(".pr-loadout-caret").children[0];
+        caret.classList.toggle("fa-angle-double-down");
+        caret.classList.toggle("fa-angle-double-up");
+        //console.log("Caret:", caret);
+
         if (content.style.maxHeight) {
             content.style.maxHeight = null;
         } else {
             content.style.maxHeight = content.scrollHeight + "px";
         }
     });
+}
+
+
+function handleWindowResize() {
+
+    // Update the maxHeight of open collapsible containers
+    var affectedElements = document.getElementsByClassName("pr-loadout-content");
+
+    for (var i = 0; i < affectedElements.length; i++) {
+        var element = affectedElements[i];
+        if (element.style.maxHeight != null) {
+            element.style.maxHeight = element.scrollHeight + "px";
+        }
+    }
 }

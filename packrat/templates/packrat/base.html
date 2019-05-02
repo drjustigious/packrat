@@ -12,15 +12,12 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'packrat/packrat.css' %}">
 
-<!-- Load JavaScipt -->
-<script src="{% static 'packrat/packrat.js' %}"></script>
-
 <head>
     <title>Pack Rat</title>
 </head>
 
 
-<body>
+<body onresize="handleWindowResize();">
     <!-- Navbar -->
     <div class="w3-top">
       <div class="w3-bar pr-greenbox w3-card">
@@ -59,7 +56,7 @@
 </body>
 
 
-<!-- Print version and author info at the bottom of the page -->
-<script src="{% static 'packrat/packrat-afterwork.js' %}"></script>
+<!-- Load JavaScipt -->
+<script src="{% static 'packrat/packrat.js' %}"></script>
 
 </html>

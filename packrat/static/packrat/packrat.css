@@ -15,6 +15,10 @@ body {
     color: #336644;
 }
 
+.pr-logo-lightgreen {
+    color: #88af95;
+}
+
 .pr-logo-blue {
     color: #2b5980;
 }
@@ -32,9 +36,45 @@ body {
 }
 
 .pr-list-background {
-    background-color: #fafafa;
-    border-radius: 16px;
-    padding: 4px;
+    min-width: 350px;
+}
+
+.pr-loadout-new {
+    background-color: #fff;
+    text-align: left;
+    padding: 8px;
+    height: 36px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aca;
+    border-radius: 2px;
+
+    margin-bottom: 6px;
+
+    position: relative;
+}
+
+.pr-loadout-new:hover {
+    background-color: #f3f6f0;
+    cursor: pointer;
+}
+
+.pr-loadout-new:active {
+    background-color: #fff;
+}
+
+.pr-loadout-new-title {
+    text-align: left;
+    color: #44664f;
+    font-weight: 100;
+    float: left;
+}
+
+.pr-loadout-new-timestamp {
+    text-align: right;
+    color: #336644;
+    float: right;
 }
 
 .pr-loadout-header {
@@ -47,6 +87,8 @@ body {
     border-style: solid;
     border-color: #aca;
     border-radius: 2px;
+
+    position: relative;
 }
 
 .pr-loadout-header:hover {
@@ -54,9 +96,14 @@ body {
     cursor: pointer;
 }
 
+.pr-loadout-header:active {
+    background-color: #e4ebde;
+}
+
 .pr-loadout-details {
     text-align: left;
     background-color: #eee;
+    position: relative;
 }
 
 .pr-loadout-description {
@@ -72,7 +119,7 @@ body {
 }
 
 .pr-loadout-timestamp {
-    text-align: left;
+    text-align: right;
     color: #336644;
     float: right;
 }
@@ -81,7 +128,7 @@ body {
     text-align: left;
     color: #000;
     font-weight: bold;
-    width: 128px;
+    width: 112px;
     float: left;
 }
 
@@ -91,7 +138,56 @@ body {
 
 }
 
-.content {
+.pr-loadout-caret {
+    color: #94bba9;
+    align-content: center;
+    text-align: center;
+
+    position: absolute;
+    left: 50%;
+    top: 8px;
+}
+
+.pr-loadout-buttoncontainer {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+}
+
+@media only screen and (max-width: 560px) {
+    .pr-loadout-buttoncontainer {
+        position: inherit;
+        float: left;
+        margin: 8px;
+        margin-left: -2px;
+    }
+}
+
+.pr-loadout-button {
+    border: 2px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #999;
+
+    background-color: #f4f8f0;
+    padding: 8px;
+    padding-bottom: 4px;
+
+    align-content: center;
+    text-align: center;
+}
+
+.pr-loadout-button:hover {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.pr-loadout-button:active {
+    background-color: #f4f8f0;
+}
+
+.pr-loadout-content {
     /* Container below a 'collapsible' header. Must have zero padding to collapse properly. */
     max-height: 0px;
     overflow: hidden;
@@ -104,3 +200,4 @@ body {
 
 .uncollapsed {
 }
+

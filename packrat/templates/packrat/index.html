@@ -9,16 +9,28 @@
     
     <br>
 
-    <div class="pr-listbackground">
+    <div class="pr-list-background">
 
-        <div class="button collapsible pr-loadout-header w3-medium">
+        <div class="pr-loadout-new w3-medium">
             <div>
-                <span class="pr-loadout-title"><i class="fa fa-briefcase pr-logo-green"></i> Sample loadout</span><span class="pr-loadout-timestamp"> 01.05.2019 at 09:44</span>
+                <span class="pr-loadout-new-title"><i class="fas fa-briefcase pr-logo-lightgreen"></i> Create new loadout</span>
             </div>
+            <p class="pr-loadout-caret"><i class="far fa-plus-square"></i></p>
         </div>
-        <div class="content pr-loadout-details">
+
+        <div class="pr-loadout-collapsible pr-loadout-header w3-medium">
+            <div>
+                <span class="pr-loadout-title"><i class="fas fa-briefcase pr-logo-green"></i> Sample loadout</span>
+                <span class="pr-loadout-timestamp"> 01.05.2019 at 09:44</span>
+            </div>
+            <p class="pr-loadout-caret"><i class="fas fa-angle-double-down"></i></p>
+        </div>
+        <div class="pr-loadout-content pr-loadout-details">
             <div class="inner-content w3-medium">
                 <p class="pr-loadout-description">A balanced 24 h loadout with provisions for on-site water acquisition and some serious sausage grilling. The base weight also includes a load of more or less necessary camera gear and other cool stuff. This description is 250 characters long.</p>
+                <div>
+                    <span class="pr-loadout-key">Author: </span><span class="pr-loadout-data"> Jussi Tikkanen</span>
+                </div>
                 <div>
                     <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 22.3 kg</span>
                 </div>
@@ -26,28 +38,12 @@
                     <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 19.7 kg</span>
                 </div>
                 <div>
-                    <span class="pr-loadout-key">Cost: </span><span class="pr-loadout-data"> 8.95 €</span>
+                    <span class="pr-loadout-key">Expenses: </span><span class="pr-loadout-data"> 8.95 €</span>
                 </div>
-            </div>
-        </div>
-
-
-        <div class="button collapsible pr-loadout-header w3-medium">
-            <div>
-                <span class="pr-loadout-title"><i class="fa fa-briefcase pr-logo-green"></i> Berserker loadout</span><span class="pr-loadout-timestamp"> 02.05.2019 at 11:03</span>
-            </div>
-        </div>
-        <div class="content pr-loadout-details">
-            <div class="inner-content w3-medium">
-                <p class="pr-loadout-description">A rudimentary but highly awesome carrying setup fashioned out of the pelt of a giant cave bear. Lots of strong mead and axes included.</p>
-                <div>
-                    <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 59.2 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 37.3 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Cost: </span><span class="pr-loadout-data"> 3.29 €</span>
+                <div class="pr-loadout-buttoncontainer">
+                    <span title="View or edit this loadout" class="pr-loadout-button"><i class="w3-large fas fa-list pr-logo-green"></i> View</span>
+                    <span title="Make a duplicate of this loadout" class="pr-loadout-button"><i class="w3-large far fa-clone pr-logo-blue"></i> Copy</span>
+                    <span  title="Permanently remove this loadout" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
                 </div>
             </div>
         </div>
