@@ -11,6 +11,25 @@
 
     <div class="pr-list-background">
 
+        <div class="row pr-loadout-filtertools w3-medium">
+            <form action="/filter-loadouts/" method="post" autocomplete="on">
+                <span class="column left">
+                    <input autofocus class="pr-loadout-searchbox" id="filter_searchbar" type="text" name="filter_searchbar" placeholder="Search by loadout name, description or author...">
+                </span>
+                <span class="column middle">
+                    <label> Sort by: </label>
+                    <select class="pr-loadout-searchmenu" name="filter_sorting_options">
+                        <option value="sort_by_name">Loadout name</option>
+                        <option value="sort_by_author">Author name</option>
+                        <option value="sort_by_date">Modification date</option>
+                    </select>
+                </span>
+                <span class="column right">
+                    <input class="pr-loadout-searchbutton" type="submit" name="filer_submit" value="Refresh">
+                </span>
+            </form>
+        </div>
+
         <div class="pr-loadout-new w3-medium">
             <div>
                 <span class="pr-loadout-new-title"><i class="fas fa-briefcase pr-logo-lightgreen"></i> Create new loadout</span>

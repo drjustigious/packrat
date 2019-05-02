@@ -35,7 +35,7 @@ function handleWindowResize() {
 
     for (var i = 0; i < affectedElements.length; i++) {
         var element = affectedElements[i];
-        if (element.style.maxHeight != null) {
+        if (element.style.maxHeight != null && element.style.maxHeight != 0) {
             element.style.maxHeight = element.scrollHeight + "px";
         }
     }

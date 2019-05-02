@@ -194,6 +194,41 @@ body {
     transition: max-height 0.2s ease-out;
 }
 
+.pr-loadout-filtertools {
+    background-color: #fff;
+    text-align: left;
+    padding: 8px;
+
+    margin: 0px;
+    margin-bottom: 6px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aca;
+    border-radius: 2px;
+
+    position: relative;
+}
+
+.pr-loadout-searchbox {
+    width: 60%;
+    border-radius: 2px;
+}
+
+@media only screen and (max-width: 620px) {
+    .pr-loadout-searchbox {
+        width: 100%;
+    }
+}
+
+.pr-loadout-searchmenu {
+    border-radius: 2px;
+}
+
+.pr-loadout-searchbutton {
+    border-radius: 2px;
+}
+
 .inner-content {
     padding: 8px;
 }
@@ -201,3 +236,23 @@ body {
 .uncollapsed {
 }
 
+.column {
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column.left {
+}
+.column.middle {
+    margin-left: 8px;
+    white-space: nowrap;
+}
+.column.right {
+    margin-left: 8px;
+}
