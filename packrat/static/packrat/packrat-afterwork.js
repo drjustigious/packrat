@@ -1,8 +1,18 @@
-// toggle detail panel visibility
-function hideItem(item) {
-    item.backupInnerHTML = item.innerHTML;
-    item.innerHTML = "";
-    item.classList.toggle("contracted");
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+
+    coll[i].addEventListener("click", function() {
+
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        content.classList.toggle("uncollapsed");
+
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
 }
-const panelsToHide = Array.from(document.getElementsByClassName("pr-loadout-body"));
-panelsToHide.forEach(hideItem);

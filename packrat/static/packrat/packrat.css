@@ -23,153 +23,84 @@ body {
     color: #b32f1d;
 }
 
+.pr-bg-verylightgreen {
+    background-color: #f4f8f0;
+}
 
-.pr-list {
+.pr-bg-lightgreen {
+    background-color: #e4f2da;
+}
+
+.pr-list-background {
     background-color: #fafafa;
     border-radius: 16px;
     padding: 4px;
 }
 
-.pr-new-loadout {
-    border-radius: 16px;
-    border-style: dashed;
-    border-width: 2px;
-    border-color: #ccc;
-    margin: 8px;
-    padding: 16px;
-
-    cursor: pointer;
-
-}
-
-.pr-new-loadout:hover {
-    border-color: #aaa;
+.pr-loadout-header {
     background-color: #e4f2da;
-}
-
-.pr-loadout {
-    margin: 8px;
-    border-radius: 16px;
-
-    overflow: hidden;
-
-    -webkit-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
-    -moz-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
-    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
-}
-
-.pr-loadout:hover .pr-loadout-body.contracted {
-    background-color: #f4f8f0;
-}
-
-.pr-loadout-heading {
-    font-weight: bold;
-    color: #1a3322;
     text-align: left;
-
+    padding: 8px;
     height: 36px;
 
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aca;
+    border-radius: 2px;
 }
 
-.pr-loadout:hover .pr-loadout-heading {
-    background-color:  #e4f2da;
+.pr-loadout-header:hover {
+    background-color: #f4f8f0;
     cursor: pointer;
-}
-
-.pr-loadout-body {
-    height: 160px;
-    transition: height 0.2s ease-out;
-    position: relative;
-}
-
-.pr-loadout-body.contracted {
-    height: 0px;
 }
 
 .pr-loadout-details {
-    --left-column-width: 220px;
-    --right-column-width: calc(100% - var(--left-column-width));
-
     text-align: left;
-    float: left;
+    background-color: #eee;
 }
 
-
-
-.pr-loadout-details.left {
-    width: var(--left-column-width);
-
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-right-color: #ccc;
-}
-.pr-loadout-details.right {
-    width: var(--right-column-width);
-    max-height: 256px;
-    padding-left: 20px;
+.pr-loadout-description {
+    text-align: justify;
+    color: #555;
 }
 
-.pr-loadout-table {
-    width: 100%;
-    table-layout: fixed;
+.pr-loadout-title {
     text-align: left;
-}
-
-.pr-loadout-details-column.left {
     color: #000;
-    font-weight: normal;
-    width: 40%;
-    height: 26px;
-}
-
-.pr-loadout-details-column.right {
-    color: #336644;
-}
-
-.pr-loadout-buttonbar {
-    position: absolute;
-    left: 10px;
-    bottom: 4px;
-}
-
-.pr-loadout-button {
+    font-weight: bold;
     float: left;
-    border-radius: 6px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ddd;
-    margin: 4px;
-    margin-right: 8px;
-    height: 24px;
-    width: 40px;
-    padding: 2px;
-
-    -webkit-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
-    -moz-box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
-    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.15);
 }
 
-.pr-loadout-button:hover {
-    background-color: #f9f9f9;
-    cursor: pointer;
-
-    transition: all 5.5s ease-out;
+.pr-loadout-timestamp {
+    text-align: left;
+    color: #336644;
+    float: right;
 }
 
-.junk-class {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
+.pr-loadout-key {
+    text-align: left;
+    color: #000;
+    font-weight: bold;
+    width: 128px;
+    float: left;
+}
 
-    -webkit-column-gap: 32px; /* Chrome, Safari, Opera */
-    -moz-column-gap: 32px; /* Firefox */
-    column-gap: 32px;
-
-    -webkit-column-rule: 1px solid #33664422; /* Chrome, Safari, Opera */
-    -moz-column-rule: 1px solid #33664422; /* Firefox */
-    column-rule: 1px solid #33664422;
+.pr-loadout-data {
+    text-align: left;
+    color: #336644;
 
 }
 
+.content {
+    /* Container below a 'collapsible' header. Must have zero padding to collapse properly. */
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.inner-content {
+    padding: 8px;
+}
+
+.uncollapsed {
+}

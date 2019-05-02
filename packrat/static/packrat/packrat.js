@@ -20,33 +20,25 @@ function toggleVisibility(elementID) {
     }
 }
 
-function toggleLoadoutDetails(event, elementID) {
-    // Make sure we're responding to a left mouse button down event
-    if (event.button != 0) return;
 
-    // Only act if either a loadout header or a contracted loadout details section was clicked
-    if ( !event.srcElement.classList.contains("contracted") && !event.srcElement.classList.contains("pr-loadout-heading") ) return;
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-    const x = document.getElementById(elementID);
-    x.classList.toggle("contracted");
+console.log("Writ.");
 
-    
-    if (x.classList.contains("contracted")) {
-        x.innerHTML = "";
-    }
-    else {
-        x.innerHTML = x.backupInnerHTML;
-    }
+for (i = 0; i < coll.length; i++) {
+    console.log("Registering", coll[i]);
+
+    coll[i].addEventListener("onclick", function() {
+
+        console.log("Click!");
+
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
 }
-
-  
-  // When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-
-
