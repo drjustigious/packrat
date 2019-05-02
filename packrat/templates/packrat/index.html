@@ -12,9 +12,9 @@
     <div class="pr-list-background">
 
         <div class="row pr-loadout-filtertools w3-medium">
-            <form action="/filter-loadouts/" method="post" autocomplete="on">
+            <form action="/packrat/filter-loadouts/" method="get" autocomplete="on">
                 <span class="column left">
-                    <input autofocus class="pr-loadout-searchbox" id="filter_searchbar" type="text" name="filter_searchbar" placeholder="Search by loadout name, description or author...">
+                    <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchbar" placeholder="Search by loadout name, description or author...">
                 </span>
                 <span class="column middle">
                     <label> Sort by: </label>
@@ -25,7 +25,7 @@
                     </select>
                 </span>
                 <span class="column right">
-                    <input class="pr-loadout-searchbutton" type="submit" name="filer_submit" value="Refresh">
+                    <input class="pr-loadout-searchbutton" type="submit" name="filter_submit" value="Refresh">
                 </span>
             </form>
         </div>
