@@ -3,12 +3,7 @@
  */
 function toggleMenuVisibility(elementID) {
     var x = document.getElementById(elementID);
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    }
-    else { 
-        x.className = x.className.replace(" w3-show", "");
-    }
+    x.classList.toggle("w3-show");
 }
 
 

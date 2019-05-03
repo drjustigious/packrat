@@ -22,14 +22,16 @@
     <div class="w3-top">
       <div class="w3-bar pr-greenbox w3-card">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right w3-hover-black" href="javascript:void(0)" onclick="toggleMenuVisibility('miniMenu');" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hover-black"><i class="fa fa-home"></i> Home</a>
-        <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hover-black"><i class="fa fa-info-circle"></i>  Info</a>
+        <a href="{% url 'index' %}" class="w3-bar-item w3-button w3-padding-large pr-greenbox w3-hover-black"><i class="fas fa-briefcase"></i>  Loadouts</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small pr-greenbox w3-hover-black"><i class="fas fa-boxes"></i>  Packables</a>
+        <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small pr-greenbox w3-hover-black"><i class="fas fa-info-circle"></i>  Info</a>
       </div>
     </div>
 
     <!-- Navbar on small screens -->
-    <div id="miniMenu" class="w3-bar-block pr-green w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-      <a href="#band" class="w3-bar-item w3-button w3-padding-large w3-hover-black" onclick="toggleMenuVisibility('miniMenu');"><i class="fa fa-info-circle"></i>  Info</a>
+    <div id="miniMenu" class="w3-bar-block pr-green w3-card w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:42px">
+      <a href="#" class="w3-bar-item w3-button w3-padding-large pr-greenbox w3-hover-black" onclick="toggleMenuVisibility('miniMenu');"><i class="fas fa-boxes"></i>  Packables</a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-large pr-greenbox w3-hover-black" onclick="toggleMenuVisibility('miniMenu');"><i class="fas fa-info-circle"></i>  Info</a>
     </div>
 
     <!-- Page content -->
