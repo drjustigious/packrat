@@ -5,6 +5,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('packables/', views.packables, name='packables'),
     path('info/', views.info, name='info'),
-    path('filter-loadouts/', views.filter_loadouts, name='filter-loadouts')
+
+    path('new-packable/', views.new_packable, name='new-packable'),
+
+    path('filter-loadouts/', views.filter_loadouts, name='filter-loadouts'),
+    path('filter-packables/', views.filter_packables, name='filter-packables'),
 ]
 

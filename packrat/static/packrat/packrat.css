@@ -260,3 +260,22 @@ body {
 .column.right {
     margin-left: 8px;
 }
+
+.pr-tablehead {
+    background-color: #437453 !important;
+    color: #fff !important;
+}
+
+.pr-modalbody {
+    padding: 8px;
+    text-align: left;
+}
+
+.pr-modalentry {
+    width: 100%;
+    background-color: #eee;
+}
+
+.pr-modalbuttons {
+    text-align: right;
+}

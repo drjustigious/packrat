@@ -27,5 +27,90 @@
         </form>
     </div>
 
+    <!-- Button for creating a new packable -->
+    <div class="pr-loadout-new w3-medium" onclick="openModal('creatorModal')">
+        <div>
+            <span class="pr-loadout-new-title"><i class="fas fa-box pr-logo-lightgreen"></i> Create new packable</span>
+        </div>
+        <p class="pr-loadout-caret"><i class="far fa-plus-square"></i></p>
+    </div>
+
+    <table class="w3-table-all w3-hoverable">
+        <thead>
+            <tr class="pr-tablehead">
+                <th style="width: 48px"><i class="fas fa-box"></i></th>
+                <th>Name</th>
+                <th>Modified</th>
+                <th>Mass (g)</th>
+                <th>Cost (€)</th>
+                <th>Vendor</th>   
+            </tr>
+        </thead>
+        <tr>
+            <td>Jill</td>
+            <td>Smith</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Eve</td>
+            <td>Jackson</td>
+            <td>94</td>
+        </tr>
+        <tr>
+            <td>Adam</td>
+            <td>Johnson</td>
+            <td>67</td>
+        </tr>
+    </table>
+
+</div>
+
+<!-- "New Packable" modal -->
+<div id="creatorModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-bottom w3-card-4" style="width: 580px">
+        <header class="w3-container pr-greenbox"> 
+        <span onclick="closeModal('creatorModal');" class="w3-button w3-display-topright"><i class="fas fa-times"></i></span>
+        <h4><i class="fas fa-box"></i> New Packable</h4>
+        </header>
+
+        <!-- Data inputs -->
+        <div class="w3-container pr-modalbody">
+            <form name="new_packable_form" action="{% url 'new-packable' %}" method="POST">
+                {% csrf_token %}
+                <p>
+                    <label>Packable name</label><br>
+                    <input class="pr-modalentry" name="new_packable_name" type="text" maxlength="256" value="" placeholder="What would you call this?" required autofocus>
+                </p>
+                <p>
+                    <label>Description</label><br>
+                    <textarea class="pr-modalentry" name="new_packable_description" maxlength="512" rows="3" placeholder="Please describe any relevant details. What's the intended use of the packable? What size is it? How many pieces does it contain? How long will it last?"></textarea>
+                </p>
+                <p>
+                    <label>Weight (grams)</label><br>
+                    <input class="pr-modalentry" name="new_packable_mass" type="text" maxlength="32" value="" placeholder="Please enter a number!" required>
+                </p>
+                <p>
+                    <label>Cost (€)</label><br>
+                    <input class="pr-modalentry" name="new_packable_cost" type="text" maxlength="32" value="0.00" placeholder="Please enter a number!" required>
+                </p>
+                <p>
+                    <label>Source or vendor</label><br>
+                    <input class="pr-modalentry" name="new_packable_vendor" type="text" maxlength="256" placeholder="Where can you get this?">
+                </p>
+                <p>
+                    <label for="newPackableConsumable">Consumable (not included in base weight)?</label><br>
+                    <input id="newPackableConsumable" type="checkbox" name="new_packable_consumable" value="true">
+                </p>
+                <p class="pr-modalbuttons">
+                    <span title="Create this packable" onclick="validateNewPackableForm();" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> Create</span>
+                    <span title="Cancel without creating anything" onclick="closeModal('creatorModal');" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Cancel</span>
+                </p>
+            </form>
+        </div>
+
+        <footer class="w3-container pr-greenbox">
+        <p> </p>
+        </footer>
+    </div>
 </div>
 {% endblock %}
