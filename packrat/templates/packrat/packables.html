@@ -12,7 +12,7 @@
     <div class="row pr-loadout-filtertools w3-medium">
         <form action="/packrat/filter-packables/" method="get" autocomplete="on">
             <span class="column left">
-                <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchbar" placeholder="Search packables by name or description...">
+                <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchstring" placeholder="Search packables by name, description or vendor...">
             </span>
             <span class="column middle">
                 <label> Sort by: </label>
@@ -43,19 +43,28 @@
                 <th>Modified</th>
                 <th>Mass (g)</th>
                 <th>Cost (€)</th>
-                <th>Vendor</th>   
+                <th>Vendor</th>
+                <th>Consumable</th>
             </tr>
         </thead>
 
         {% if listPackables %}
         {% for packable in listPackables %}
-        <tr>
-            <td>...</td>
-            <td>{{ packable.name }}</td>
-            <td>{{ packable.date }}</td>
-            <td>{{ packable.mass }}</td>
-            <td>{{ packable.cost }}</td>
-            <td>{{ packable.vendor }}</td>
+        <tr id="dataRow{{ packable.id }}">
+            <td class="pr-packable-ellipsis" onclick="openEditPackableModal('{{ packable.id }}');"><i class="fas fa-ellipsis-h"></i></td>
+            <td id="nameField{{ packable.id }}">{{ packable.name }}</td>
+            <td id="dateField{{ packable.id }}">{{ packable.date }}</td>
+            <td id="massField{{ packable.id }}">{{ packable.mass }}</td>
+            <td id="costField{{ packable.id }}">{{ packable.cost }}</td>
+            <td id="vendorField{{ packable.id }}">{{ packable.vendor }}</td>
+            <td id="consumableField{{ packable.id }}" style="text-align: center">
+                {% if packable.is_consumable %}
+                    <i class="far fa-check-square pr-logo-red"></i>
+                {% else %}
+                    <i class="far fa-square pr-logo-green"></i>
+                {% endif %}
+            </td>
+            <p hidden id="descriptionField{{ packable.id }}" style="visibility: hidden">{{ packable.description }}</p>
         </tr>
         {% endfor %}
         {% else %}
@@ -71,7 +80,7 @@
 
     </table>
     <br>
-    <p>The search found {{ numPackables|length }} packables in database.</p>
+    <p>The search found {{ numPackablesFound }} packables in the database.</p>
 
 </div>
 
@@ -112,8 +121,61 @@
                     <input id="newPackableConsumable" type="checkbox" name="new_packable_consumable" value="true">
                 </p>
                 <p class="pr-modalbuttons">
-                    <span title="Create this packable" onclick="validateNewPackableForm();" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> Create</span>
                     <span title="Cancel without creating anything" onclick="closeModal('creatorModal');" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Cancel</span>
+                    <span title="Create this packable" onclick="validateNewPackableForm();" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> Create</span>
+                </p>
+            </form>
+        </div>
+
+        <footer class="w3-container pr-greenbox">
+        <p> </p>
+        </footer>
+    </div>
+</div>
+
+
+
+
+<!-- "Edit Packable" modal -->
+<div id="editorModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-bottom w3-card-4" style="width: 580px">
+        <header class="w3-container pr-greenbox"> 
+        <span onclick="closeModal('editorModal');" class="w3-button w3-display-topright"><i class="fas fa-times"></i></span>
+        <h4><i class="fas fa-box"></i> Edit Packable</h4>
+        </header>
+
+        <!-- Data inputs -->
+        <div class="w3-container pr-modalbody">
+            <form name="edit_packable_form" action="{% url 'edit-packable' %}" method="POST">
+                {% csrf_token %}
+                <p>
+                    <label>Packable name</label><br>
+                    <input class="pr-modalentry" name="edit_packable_name" type="text" maxlength="256" value="" placeholder="What would you call this?" required autofocus>
+                </p>
+                <p>
+                    <label>Description</label><br>
+                    <textarea class="pr-modalentry" name="edit_packable_description" maxlength="512" rows="3" placeholder="Please describe any relevant details. What's the intended use of the packable? What size is it? How many pieces does it contain? How long will it last?"></textarea>
+                </p>
+                <p>
+                    <label>Mass (grams)</label><br>
+                    <input class="pr-modalentry" name="edit_packable_mass" type="text" maxlength="32" value="" placeholder="Please enter a number!" required>
+                </p>
+                <p>
+                    <label>Cost (€)</label><br>
+                    <input class="pr-modalentry" name="edit_packable_cost" type="text" maxlength="32" value="0.00" placeholder="Please enter a number!" required>
+                </p>
+                <p>
+                    <label>Source or vendor</label><br>
+                    <input class="pr-modalentry" name="edit_packable_vendor" type="text" maxlength="256" placeholder="Where can you get this?">
+                </p>
+                <p>
+                    <label for="editPackableConsumable">Consumable (not included in base weight)?</label><br>
+                    <input id="editPackableConsumable" type="checkbox" name="edit_packable_consumable" value="true">
+                </p>
+                <p class="pr-modalbuttons">
+                    <span title="Update this packable" onclick="validateEditPackableForm();" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> Save</span>
+                    <span title="Delete this packable" onclick="closeModal('editorModal');" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
+                    <span title="Cancel without modifying anything" onclick="closeModal('editorModal');" class="pr-loadout-button"><i class="w3-large fas fa-undo-alt pr-logo-blue"></i> Cancel</span>
                 </p>
             </form>
         </div>

@@ -122,3 +122,37 @@ function validAsNumber(formField) {
 
     return validationPassed;
 }
+
+
+function openEditPackableModal(packableId) {
+    /*
+     * Transfer relevant data to the "Edit Packable" modal and open the modal
+     */
+
+    var modalField = document.getElementsByName("edit_packable_name")[0];
+    modalField.value = document.getElementById("nameField"+packableId).innerText;
+
+    modalField = document.getElementsByName("edit_packable_description")[0];
+    modalField.innerHTML = document.getElementById("descriptionField"+packableId).innerText;
+
+    modalField = document.getElementsByName("edit_packable_mass")[0];
+    modalField.value = document.getElementById("massField"+packableId).innerText;
+
+    modalField = document.getElementsByName("edit_packable_cost")[0];
+    modalField.value = document.getElementById("costField"+packableId).innerText;
+
+    modalField = document.getElementsByName("edit_packable_vendor")[0];
+    modalField.value = document.getElementById("vendorField"+packableId).innerText;
+
+    modalField = document.getElementsByName("edit_packable_consumable")[0];
+    const checkboxElement = document.getElementById("consumableField"+packableId).children[0];
+
+    if (checkboxElement.classList.contains("fa-check-square")) {
+        modalField.checked = true;
+    }
+    else {
+        modalField.checked = false;
+    }
+
+    openModal("editorModal");
+}

@@ -279,3 +279,8 @@ body {
 .pr-modalbuttons {
     text-align: right;
 }
+
+.pr-packable-ellipsis {
+    cursor: pointer;
+    color: #336644;
+}

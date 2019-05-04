@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.db.models import Q
 import packrat.models as models
 
 
@@ -15,9 +16,13 @@ def packables(request):
     """
     The Packables view page.
     """
+    listPackables = models.Packable.objects.all()
+
     context = {
-        "listPackables": models.Packable.objects.all()
+        "listPackables": listPackables,
+        "numPackablesFound": len(listPackables)
     }
+
     return render(request, 'packrat/packables.html', context)
 
 def info(request):
@@ -56,8 +61,22 @@ def filter_packables(request):
     if request.method != "GET":
         return
 
+    # Get a list of separate search words
+    listSearchTerms = request.GET["filter_searchstring"].split(" ")
+    listSearchTerms = [s for s in listSearchTerms if s != ""]
+
+    # Refine the list of items returned from the database
+    listPackables = models.Packable.objects.all()
+
+    for searchTerm in listSearchTerms:
+        listPackables = listPackables.filter(
+            Q(name__icontains=searchTerm) | Q(description__icontains=searchTerm) | Q(vendor__icontains=searchTerm)
+        )
+
+    # Return the list of items via the rendering context
     context = {
-        "listPackables": models.Packable.objects.all()
+        "listPackables": listPackables,
+        "numPackablesFound": len(listPackables)
     }
 
     return render(request, 'packrat/packables.html', context)
@@ -94,9 +113,24 @@ def new_packable(request):
     }
     """
 
+    listPackables = models.Packable.objects.all()
+
     context = {
-       "newPackable": newPackable.name,
-       "listPackables": models.Packable.objects.all()
+        "newPackable": newPackable.name,
+        "listPackables": listPackables,
+        "numPackablesFound": len(listPackables)
     }
 
     return render(request, 'packrat/packables.html', context)
+
+
+def edit_packable(request):
+    """
+    Edits an existing packable.
+    """
+    listPackables = models.Packable.objects.all()
+
+    context = {
+        "listPackables": listPackables,
+        "numPackablesFound": len(listPackables)
+    }
