@@ -1,0 +1,31 @@
+{% extends 'packrat/base.html' %}
+
+{% block content %}
+<!-- View-specific title -->
+<p class="w3-large"><i class="fas fa-boxes pr-logo-green"></i> PACKABLES</p>
+<hr>
+
+<!-- The main GUI related to packables -->
+<div class="pr-list-background">
+
+    <!-- Packables search tools -->
+    <div class="row pr-loadout-filtertools w3-medium">
+        <form action="/packrat/filter-packables/" method="get" autocomplete="on">
+            <span class="column left">
+                <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchbar" placeholder="Search packables by name or description...">
+            </span>
+            <span class="column middle">
+                <label> Sort by: </label>
+                <select class="pr-loadout-searchmenu" name="filter_sorting_options">
+                    <option value="sort_by_name">Packable name</option>
+                    <option value="sort_by_date">Modification date</option>
+                </select>
+            </span>
+            <span class="column right">
+                <input class="pr-loadout-searchbutton" type="submit" name="filter_submit" value="Refresh">
+            </span>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

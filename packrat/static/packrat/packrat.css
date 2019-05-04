@@ -233,8 +233,10 @@ body {
     padding: 8px;
 }
 
+/*
 .uncollapsed {
 }
+*/
 
 .column {
   width: 33.33%;
@@ -247,8 +249,10 @@ body {
   clear: both;
 }
 
+/*
 .column.left {
 }
+*/
 .column.middle {
     margin-left: 8px;
     white-space: nowrap;

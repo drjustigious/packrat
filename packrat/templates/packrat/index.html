@@ -1,111 +1,105 @@
 {% extends 'packrat/base.html' %}
 
 {% block content %}
-<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="mainContent">
-    <!-- Title and logo stuff -->
-    <h2 class="w3-wide">PACK RAT</h2>
-    <i class="w3-xlarge fas fa-hiking pr-logo-green"></i>
-    <p class="w3-opacity">Expedition loadout planner</p>
-    
-    <br>
+<!-- View-specific title -->
+<p class="w3-large"><i class="fas fa-briefcase pr-logo-green"></i> LOADOUTS</p>
+<hr>
 
-    <!-- The main functionality related to loadouts -->
-    <div class="pr-list-background">
+<!-- The main functionality related to loadouts -->
+<div class="pr-list-background">
 
-        <!-- Loadout search tools -->
-        <div class="row pr-loadout-filtertools w3-medium">
-            <form action="/packrat/filter-loadouts/" method="get" autocomplete="on">
-                <span class="column left">
-                    <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchbar" placeholder="Search loadouts by name, description or author...">
-                </span>
-                <span class="column middle">
-                    <label> Sort by: </label>
-                    <select class="pr-loadout-searchmenu" name="filter_sorting_options">
-                        <option value="sort_by_name">Loadout name</option>
-                        <option value="sort_by_author">Author name</option>
-                        <option value="sort_by_date">Modification date</option>
-                    </select>
-                </span>
-                <span class="column right">
-                    <input class="pr-loadout-searchbutton" type="submit" name="filter_submit" value="Refresh">
-                </span>
-            </form>
-        </div>
-
-
-        <!-- Button for creating a new loadout -->
-        <div class="pr-loadout-new w3-medium">
-            <div>
-                <span class="pr-loadout-new-title"><i class="fas fa-briefcase pr-logo-lightgreen"></i> Create new loadout</span>
-            </div>
-            <p class="pr-loadout-caret"><i class="far fa-plus-square"></i></p>
-        </div>
-
-
-        <!-- Loadout template -->
-        <div class="pr-loadout-collapsible pr-loadout-header w3-medium">
-            <div>
-                <span class="pr-loadout-title"><i class="fas fa-briefcase pr-logo-green"></i> Sample loadout</span>
-                <span class="pr-loadout-timestamp"> 01.05.2019 at 09:44</span>
-            </div>
-            <p class="pr-loadout-caret"><i class="fas fa-angle-double-down"></i></p>
-        </div>
-        <div class="pr-loadout-content pr-loadout-details">
-            <div class="inner-content w3-medium">
-                <p class="pr-loadout-description">A balanced 24 h loadout with provisions for on-site water acquisition and some serious sausage grilling. The base weight also includes a load of more or less necessary camera gear and other cool stuff. This description is 250 characters long.</p>
-                <div>
-                    <span class="pr-loadout-key">Author: </span><span class="pr-loadout-data"> Jussi Tikkanen</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 22.3 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 19.7 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Expenses: </span><span class="pr-loadout-data"> 8.95 €</span>
-                </div>
-                <div class="pr-loadout-buttoncontainer">
-                    <span title="View or edit this loadout" class="pr-loadout-button"><i class="w3-large fas fa-list pr-logo-green"></i> View</span>
-                    <span title="Make a duplicate of this loadout" class="pr-loadout-button"><i class="w3-large far fa-clone pr-logo-blue"></i> Copy</span>
-                    <span  title="Permanently remove this loadout" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- A dummy loadout -->
-        <div class="pr-loadout-collapsible pr-loadout-header w3-medium">
-            <div>
-                <span class="pr-loadout-title"><i class="fas fa-briefcase pr-logo-green"></i> Berserker loadout</span>
-                <span class="pr-loadout-timestamp"> 02.05.2019 at 11:07</span>
-            </div>
-            <p class="pr-loadout-caret"><i class="fas fa-angle-double-down"></i></p>
-        </div>
-        <div class="pr-loadout-content pr-loadout-details">
-            <div class="inner-content w3-medium">
-                <p class="pr-loadout-description">A totally uncompromising backpack fashioned out of the pelt of a giant cave bear. Lots of strong mead and sharp axes included.</p>
-                <div>
-                    <span class="pr-loadout-key">Author: </span><span class="pr-loadout-data"> Ragnar Lodbrok</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 59.7 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 42.3 kg</span>
-                </div>
-                <div>
-                    <span class="pr-loadout-key">Expenses: </span><span class="pr-loadout-data"> 2.59 €</span>
-                </div>
-                <div class="pr-loadout-buttoncontainer">
-                    <span title="View or edit this loadout" class="pr-loadout-button"><i class="w3-large fas fa-list pr-logo-green"></i> View</span>
-                    <span title="Make a duplicate of this loadout" class="pr-loadout-button"><i class="w3-large far fa-clone pr-logo-blue"></i> Copy</span>
-                    <span  title="Permanently remove this loadout" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
-                </div>
-            </div>
-        </div>
-
+    <!-- Loadout search tools -->
+    <div class="row pr-loadout-filtertools w3-medium">
+        <form action="/packrat/filter-loadouts/" method="get" autocomplete="on">
+            <span class="column left">
+                <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchbar" placeholder="Search loadouts by name, description or author...">
+            </span>
+            <span class="column middle">
+                <label> Sort by: </label>
+                <select class="pr-loadout-searchmenu" name="filter_sorting_options">
+                    <option value="sort_by_name">Loadout name</option>
+                    <option value="sort_by_author">Author name</option>
+                    <option value="sort_by_date">Modification date</option>
+                </select>
+            </span>
+            <span class="column right">
+                <input class="pr-loadout-searchbutton" type="submit" name="filter_submit" value="Refresh">
+            </span>
+        </form>
     </div>
-        
+
+
+    <!-- Button for creating a new loadout -->
+    <div class="pr-loadout-new w3-medium">
+        <div>
+            <span class="pr-loadout-new-title"><i class="fas fa-briefcase pr-logo-lightgreen"></i> Create new loadout</span>
+        </div>
+        <p class="pr-loadout-caret"><i class="far fa-plus-square"></i></p>
+    </div>
+
+
+    <!-- Loadout template -->
+    <div class="pr-loadout-collapsible pr-loadout-header w3-medium">
+        <div>
+            <span class="pr-loadout-title"><i class="fas fa-briefcase pr-logo-green"></i> Sample loadout</span>
+            <span class="pr-loadout-timestamp"> 01.05.2019 at 09:44</span>
+        </div>
+        <p class="pr-loadout-caret"><i class="fas fa-angle-double-down"></i></p>
+    </div>
+    <div class="pr-loadout-content pr-loadout-details">
+        <div class="inner-content w3-medium">
+            <p class="pr-loadout-description">A balanced 24 h loadout with provisions for on-site water acquisition and some serious sausage grilling. The base weight also includes a load of more or less necessary camera gear and other cool stuff. This description is 250 characters long.</p>
+            <div>
+                <span class="pr-loadout-key">Author: </span><span class="pr-loadout-data"> Jussi Tikkanen</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 22.3 kg</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 19.7 kg</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Expenses: </span><span class="pr-loadout-data"> 8.95 €</span>
+            </div>
+            <div class="pr-loadout-buttoncontainer">
+                <span title="View or edit this loadout" class="pr-loadout-button"><i class="w3-large fas fa-list pr-logo-green"></i> View</span>
+                <span title="Make a duplicate of this loadout" class="pr-loadout-button"><i class="w3-large far fa-clone pr-logo-blue"></i> Copy</span>
+                <span  title="Permanently remove this loadout" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- A dummy loadout -->
+    <div class="pr-loadout-collapsible pr-loadout-header w3-medium">
+        <div>
+            <span class="pr-loadout-title"><i class="fas fa-briefcase pr-logo-green"></i> Berserker loadout</span>
+            <span class="pr-loadout-timestamp"> 02.05.2019 at 11:07</span>
+        </div>
+        <p class="pr-loadout-caret"><i class="fas fa-angle-double-down"></i></p>
+    </div>
+    <div class="pr-loadout-content pr-loadout-details">
+        <div class="inner-content w3-medium">
+            <p class="pr-loadout-description">A totally uncompromising backpack fashioned out of the pelt of a giant cave bear. Lots of strong mead and sharp axes included.</p>
+            <div>
+                <span class="pr-loadout-key">Author: </span><span class="pr-loadout-data"> Ragnar Lodbrok</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Full weight: </span><span class="pr-loadout-data"> 59.7 kg</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Base weight: </span><span class="pr-loadout-data"> 42.3 kg</span>
+            </div>
+            <div>
+                <span class="pr-loadout-key">Expenses: </span><span class="pr-loadout-data"> 2.59 €</span>
+            </div>
+            <div class="pr-loadout-buttoncontainer">
+                <span title="View or edit this loadout" class="pr-loadout-button"><i class="w3-large fas fa-list pr-logo-green"></i> View</span>
+                <span title="Make a duplicate of this loadout" class="pr-loadout-button"><i class="w3-large far fa-clone pr-logo-blue"></i> Copy</span>
+                <span  title="Permanently remove this loadout" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

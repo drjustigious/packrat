@@ -3,11 +3,25 @@ from django.http import HttpResponse, JsonResponse
 
 
 def index(request):
-    welcomePhrase = "Hello, world."
-
+    """
+    The Loadouts view page, doubles as the index.
+    """
     context = {}
-
     return render(request, 'packrat/index.html', context)
+
+def packables(request):
+    """
+    The Packables view page.
+    """
+    context = {}
+    return render(request, 'packrat/packables.html', context)
+
+def info(request):
+    """
+    The Information page.
+    """
+    context = {}
+    return render(request, 'packrat/info.html', context)
 
 
 def filter_loadouts(request):
