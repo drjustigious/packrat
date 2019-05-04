@@ -60,52 +60,65 @@ function validateNewPackableForm() {
      *  Validate and potentially submit the "create new packable" form
      */
 
-    form = document.forms["new_packable_form"];
+    var form = document.forms["new_packable_form"];
     var validationPassed = true;
 
-
-    // Check that some name has been given
-    var name = form["new_packable_name"].value;
-    if (name == "") {
+    // Check the individual required fields
+    if (!validAsNameString(form["new_packable_name"]))
         validationPassed = false;
-
-        form["new_packable_name"].style.backgroundColor = "#ffd7cc";
-        form["new_packable_name"].placeholder = "A name is required!";
-    }
-    else {
-        form["new_packable_name"].style.backgroundColor = "#eee";
-    }
-
-    // Check that the given mass is a number and uses dot as decimal separator
-    var mass = form["new_packable_mass"].value.replace(",", ".");
-    form["new_packable_mass"].value = mass;
-
-    if (mass == "" || isNaN(mass)) {
+    if (!validAsNumber(form["new_packable_mass"]))
         validationPassed = false;
-
-        form["new_packable_mass"].style.backgroundColor = "#ffd7cc";
-        form["new_packable_mass"].placeholder = "Please enter a number!";
-    }
-    else {
-        form["new_packable_cost"].style.backgroundColor = "#eee";
-    }
-
-    // Check that the given cost is a number and uses dot as decimal separator
-    var cost = form["new_packable_cost"].value.replace(",", ".");
-    form["new_packable_cost"].value = cost;
-
-    if (cost == "" || isNaN(cost)) {
+    if (!validAsNumber(form["new_packable_cost"]))
         validationPassed = false;
-
-        form["new_packable_cost"].style.backgroundColor = "#ffd7cc";
-        form["new_packable_cost"].placeholder = "Please enter a number!";
-    }
-    else {
-        form["new_packable_cost"].style.backgroundColor = "#eee";
-    }
     
     // If the inputs are correctly formatted, submit the form
     if (validationPassed) {
         form.submit();
     }
+}
+
+function validAsNameString(formField) {
+    /*
+     * Checks that the value entered in 'formField' is a non-empty string
+     * and returns 'true' if it is. Otherwise, marks the field with red.
+     */
+    var validationPassed = true;
+    const enteredValue = formField.value;
+
+    if (enteredValue == "") {
+        validationPassed = false;
+
+        formField.style.backgroundColor = "#ffd7cc";
+        formField.placeholder = "A name is required!";
+    }
+    else {
+        formField.style.backgroundColor = "#eee";
+    }
+
+    return validationPassed;
+}
+
+function validAsNumber(formField) {
+    /*
+     * Checks that the value entered in 'formField' is a valid (decimal) number
+     * and returns 'true' if it is. Otherwise, marks the field with red.
+     */
+    var validationPassed = true;
+
+    // Change the decimal separator to a dot if a comma was used
+    const enteredValue = formField.value.replace(",", ".");
+    formField.value = enteredValue;
+
+    // Check that the entered value is a number
+    if (enteredValue == "" || isNaN(enteredValue)) {
+        validationPassed = false;
+
+        formField.style.backgroundColor = "#ffd7cc";
+        formField.placeholder = "Please enter a number!";
+    }
+    else {
+        formField.style.backgroundColor = "#eee";
+    }
+
+    return validationPassed;
 }
