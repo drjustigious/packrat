@@ -39,29 +39,39 @@
         <thead>
             <tr class="pr-tablehead">
                 <th style="width: 48px"><i class="fas fa-box"></i></th>
-                <th>Name</th>
+                <th>Item name</th>
                 <th>Modified</th>
                 <th>Mass (g)</th>
                 <th>Cost (€)</th>
                 <th>Vendor</th>   
             </tr>
         </thead>
+
+        {% if listPackables %}
+        {% for packable in listPackables %}
         <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
+            <td>...</td>
+            <td>{{ packable.name }}</td>
+            <td>{{ packable.date }}</td>
+            <td>{{ packable.mass }}</td>
+            <td>{{ packable.cost }}</td>
+            <td>{{ packable.vendor }}</td>
         </tr>
+        {% endfor %}
+        {% else %}
         <tr>
-            <td>Eve</td>
-            <td>Jackson</td>
-            <td>94</td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
+            <td> </td>
         </tr>
-        <tr>
-            <td>Adam</td>
-            <td>Johnson</td>
-            <td>67</td>
-        </tr>
+        {% endif %}
+
     </table>
+    <br>
+    <p>The search found {{ numPackables|length }} packables in database.</p>
 
 </div>
 
@@ -86,7 +96,7 @@
                     <textarea class="pr-modalentry" name="new_packable_description" maxlength="512" rows="3" placeholder="Please describe any relevant details. What's the intended use of the packable? What size is it? How many pieces does it contain? How long will it last?"></textarea>
                 </p>
                 <p>
-                    <label>Weight (grams)</label><br>
+                    <label>Mass (grams)</label><br>
                     <input class="pr-modalentry" name="new_packable_mass" type="text" maxlength="32" value="" placeholder="Please enter a number!" required>
                 </p>
                 <p>

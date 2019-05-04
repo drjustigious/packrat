@@ -16,6 +16,9 @@ class Packable(models.Model):
     vendor = models.CharField(max_length=256, verbose_name="vendor or other procurement source")
     is_consumable = models.BooleanField()
 
+    def __str__(self):
+        return self.name
+
 
 class Loadout(models.Model):
     """
@@ -31,6 +34,9 @@ class Loadout(models.Model):
     # Use hashlib.sha512 and hashlib.hexdigest to get a 128-character hash string of every password
     password = models.CharField(max_length=128, verbose_name="password hash string")
     root_item = models.ForeignKey(Packable, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class PackingRelation(models.Model):

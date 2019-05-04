@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+import packrat.models as models
+
 
 
 def index(request):
@@ -13,7 +15,9 @@ def packables(request):
     """
     The Packables view page.
     """
-    context = {}
+    context = {
+        "listPackables": models.Packable.objects.all()
+    }
     return render(request, 'packrat/packables.html', context)
 
 def info(request):
@@ -52,18 +56,8 @@ def filter_packables(request):
     if request.method != "GET":
         return
 
-    """
-    # Trying out a plain JSON response...
-    responseDict = {
-        "Key1" : "Value1",
-        "Key2" : "Badd valuezz"
-    }
-
-    return JsonRequest( responseDict )
-    """
-
     context = {
-        "packablesFiltered" : "true"
+        "listPackables": models.Packable.objects.all()
     }
 
     return render(request, 'packrat/packables.html', context)
@@ -72,11 +66,37 @@ def filter_packables(request):
 
 def new_packable(request):
     """
-    Create a new packable.
+    Creates a new packable in the database based on data delivered via a POST request.
     """
 
     if request.method != "POST":
         return
 
-    context = {}
+    newPackable = models.Packable(
+        name = request.POST["new_packable_name"],
+        description = request.POST["new_packable_description"],
+        mass = request.POST["new_packable_mass"],
+        cost = request.POST["new_packable_cost"],
+        vendor = request.POST["new_packable_vendor"],
+        is_consumable = ("new_packable_consumable" in request.POST)
+    )
+
+    newPackable.save()
+
+    """
+    respDict = {
+        "name": newPackable.name,
+        "description": newPackable.description,
+        "mass": newPackable.mass,
+        "cost": newPackable.cost,
+        "vendor": newPackable.vendor,
+        "is_consumable": newPackable.is_consumable
+    }
+    """
+
+    context = {
+       "newPackable": newPackable.name,
+       "listPackables": models.Packable.objects.all()
+    }
+
     return render(request, 'packrat/packables.html', context)
