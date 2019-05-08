@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 
 import packrat.models as models
+import packrat.utils as utils
 
 import decimal
 
@@ -32,8 +33,9 @@ def packables(request, operationMessage=""):
     modalMessage = ""
 
     if (operationMessage != ""):
-        # TODO: once this part works with intended input, silently ignore parsing errors (likely from hacker input)
+        # TODO: once this part works with intended input, silently ignore parsing errors to deny hackers any feedback
         messageVerb, messageNoun = operationMessage.split(":")
+        messageNoun = utils.decodeUrlProofString(messageNoun)
 
         if (messageVerb == "created"):
             modalMessage = "New packable \""+messageNoun+"\" created."
@@ -152,7 +154,7 @@ def new_packable(request):
 
     newPackable.save()
 
-    return redirect('packables', operationMessage="created:"+newPackable.name)
+    return redirect('packables', operationMessage="created:"+utils.urlProofString(newPackable.name))
 
 
 def edit_packable(request):
@@ -171,13 +173,13 @@ def edit_packable(request):
     updatedPackable.name = request.POST["edit_packable_name"]
     updatedPackable.description = request.POST["edit_packable_description"]
     updatedPackable.mass = float(request.POST["edit_packable_mass"])
-    updatedPackable.cost = decimal.Decimal(request.POST["edit_packable_mass"])
+    updatedPackable.cost = decimal.Decimal(request.POST["edit_packable_cost"])
     updatedPackable.vendor = request.POST["edit_packable_vendor"]
     updatedPackable.is_consumable = ("edit_packable_consumable" in request.POST)
 
     updatedPackable.save()
 
-    return redirect('packables', operationMessage="updated:"+updatedPackable.name)
+    return redirect('packables', operationMessage="updated:"+utils.urlProofString(updatedPackable.name))
 
 
 def delete_packable(request):
@@ -195,4 +197,4 @@ def delete_packable(request):
     deletedName = deletedPackable.name
     deletedPackable.delete()
 
-    return redirect('packables', operationMessage="deleted:"+deletedName)
+    return redirect('packables', operationMessage="deleted:"+utils.urlProofString(deletedName))
