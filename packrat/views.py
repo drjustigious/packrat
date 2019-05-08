@@ -21,6 +21,7 @@ def packables(request, operationMessage=""):
     The Packables view page.
     """
     listPackables = models.Packable.objects.all()
+    listPackables = listPackables.order_by('name', 'date') # override default sorting by invisible id
 
     context = {
         "listPackables": listPackables,
@@ -95,10 +96,37 @@ def filter_packables(request):
             Q(name__icontains=searchTerm) | Q(description__icontains=searchTerm) | Q(vendor__icontains=searchTerm)
         )
 
+    # Order the results based on the sorting option
+    sortingOption = request.GET["filter_sorting_option"]
+    sortingOptionIndex = 0 # this is for the JavaScript that re-selects the correct option
+
+    if sortingOption == "sort_by_name":
+        listPackables = listPackables.order_by('name', '-date')
+        sortingOptionIndex = 0
+    elif sortingOption == "sort_by_date":
+        listPackables = listPackables.order_by('-date', 'name')
+        sortingOptionIndex = 2
+    elif sortingOption == "sort_by_vendor":
+        listPackables = listPackables.order_by('vendor', '-date', 'name')
+        sortingOptionIndex = 4
+
+    elif sortingOption == "sort_by_name_desc":
+        listPackables = listPackables.order_by('-name', '-date')
+        sortingOptionIndex = 1
+    elif sortingOption == "sort_by_date_desc":
+        listPackables = listPackables.order_by('date', 'name')
+        sortingOptionIndex = 3
+    elif sortingOption == "sort_by_vendor_desc":
+        listPackables = listPackables.order_by('-vendor', '-date', 'name')
+        sortingOptionIndex = 5
+
     # Return the list of items via the rendering context
     context = {
         "listPackables": listPackables,
-        "numPackablesFound": len(listPackables)
+        "numPackablesFound": len(listPackables),
+        "filterInputReturned": True,
+        "filterSortingOptionIndex": sortingOptionIndex,
+        "filterSearchString": " ".join(listSearchTerms)
     }
 
     return render(request, 'packrat/packables.html', context)

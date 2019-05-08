@@ -12,13 +12,17 @@
     <div class="row pr-loadout-filtertools w3-medium">
         <form action="/packrat/filter-packables/" method="get" autocomplete="on">
             <span class="column left">
-                <input autofocus class="pr-loadout-searchbox" id="filter_searchstring" type="text" name="filter_searchstring" placeholder="Search packables by name, description or vendor...">
+                <input autofocus class="pr-loadout-searchbox" id="filterSearchString" type="text" name="filter_searchstring" placeholder="Search packables by name, description or vendor...">
             </span>
             <span class="column middle">
                 <label> Sort by: </label>
-                <select class="pr-loadout-searchmenu" name="filter_sorting_options">
-                    <option value="sort_by_name">Packable name</option>
-                    <option value="sort_by_date">Modification date</option>
+                <select id = "filterSortingOption" class="pr-loadout-searchmenu" name="filter_sorting_option">
+                    <option value="sort_by_name">Packable name (A-Z)</option>
+                    <option value="sort_by_name_desc">Packable name (Z-A)</option>
+                    <option value="sort_by_date">Date (new-old)</option>
+                    <option value="sort_by_date_desc">Date (old-new)</option>
+                    <option value="sort_by_vendor">Vendor (A-Z)</option>
+                    <option value="sort_by_vendor_desc">Vendor (Z-A)</option>
                 </select>
             </span>
             <span class="column right">
@@ -231,6 +235,15 @@
     {% if modalMessage %}
         <script>
             openModal('messageModal');
+        </script>
+    {% endif %}
+    {% if filterInputReturned %}
+        <script>
+            console.log("filterSearchString:", String.raw`{{ filterSearchString }}`);
+            console.log("filterSortingOption:", String.raw`{{ filterSortingOptionIndex }}`);
+
+            document.getElementById("filterSearchString").value = String.raw`{{ filterSearchString }}`;
+            document.getElementById("filterSortingOption").selectedIndex = String.raw`{{ filterSortingOptionIndex }}`;
         </script>
     {% endif %}
 {% endblock %}
