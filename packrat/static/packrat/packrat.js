@@ -60,6 +60,10 @@ function validateNewPackableForm() {
      *  Validate and potentially submit the "create new packable" form
      */
 
+    // Close the modal to prevent multiple creation events
+    // in case the user smashes the submit button
+    closeModal('creatorModal');
+
     var form = document.forms["new_packable_form"];
     var validationPassed = true;
 
@@ -147,6 +151,9 @@ function openEditPackableModal(packableId) {
     modalField = document.getElementsByName("edit_packable_consumable")[0];
     const checkboxElement = document.getElementById("consumableField"+packableId).children[0];
 
+    modalField = document.getElementsByName("edit_packable_id")[0];
+    modalField.value = packableId;
+
     if (checkboxElement.classList.contains("fa-check-square")) {
         modalField.checked = true;
     }
@@ -155,4 +162,50 @@ function openEditPackableModal(packableId) {
     }
 
     openModal("editorModal");
+}
+
+function validateEditPackableForm() {
+    /*
+     *  Validate and potentially submit the "edit packable" form
+     */
+
+    // Close the modal to prevent multiple update events
+    // in case the user smashes the submit button
+    closeModal('editorModal');
+
+    var form = document.forms["edit_packable_form"];
+    var validationPassed = true;
+
+    // Check the individual required fields
+    if (!validAsNameString(form["edit_packable_name"]))
+        validationPassed = false;
+    if (!validAsNumber(form["edit_packable_mass"]))
+        validationPassed = false;
+    if (!validAsNumber(form["edit_packable_cost"]))
+        validationPassed = false;
+    
+    // If the inputs are correctly formatted, submit the form
+    if (validationPassed) {
+        form.submit();
+    }
+}
+
+
+function deletePackable() {
+    /*
+     * Deletes the packable opened for editing in editorModal
+     */
+
+    closeModal('editorModal');
+
+    // Transfer the ID of the packable to deleted to the correct form
+    const deleteForm = document.forms["delete_packable_form"];
+    const deleteIdField = document.getElementsByName("delete_packable_id")[0];
+    const editorIdField = document.getElementsByName("edit_packable_id")[0];
+
+    deleteIdField.value = editorIdField.value;
+
+    // The preceding operations should never fail since we only use the
+    // internal ID which the user cannot access/disturb. So just submit.
+    deleteForm.submit();
 }

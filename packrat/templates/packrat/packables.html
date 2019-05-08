@@ -51,7 +51,7 @@
         {% if listPackables %}
         {% for packable in listPackables %}
         <tr id="dataRow{{ packable.id }}">
-            <td class="pr-packable-ellipsis" onclick="openEditPackableModal('{{ packable.id }}');"><i class="fas fa-ellipsis-h"></i></td>
+            <td class="pr-packable-ellipsis" title="Edit packable: {{ packable.name }}" onclick="openEditPackableModal('{{ packable.id }}');"><i class="fas fa-ellipsis-h"></i></td>
             <td id="nameField{{ packable.id }}">{{ packable.name }}</td>
             <td id="dateField{{ packable.id }}">{{ packable.date }}</td>
             <td id="massField{{ packable.id }}">{{ packable.mass }}</td>
@@ -64,7 +64,7 @@
                     <i class="far fa-square pr-logo-green"></i>
                 {% endif %}
             </td>
-            <p hidden id="descriptionField{{ packable.id }}" style="visibility: hidden">{{ packable.description }}</p>
+            <p hidden id="descriptionField{{ packable.id }}">{{ packable.description }}</p>
         </tr>
         {% endfor %}
         {% else %}
@@ -113,7 +113,7 @@
                     <input class="pr-modalentry" name="new_packable_cost" type="text" maxlength="32" value="0.00" placeholder="Please enter a number!" required>
                 </p>
                 <p>
-                    <label>Source or vendor</label><br>
+                    <label>Vendor (source of acquisition)</label><br>
                     <input class="pr-modalentry" name="new_packable_vendor" type="text" maxlength="256" placeholder="Where can you get this?">
                 </p>
                 <p>
@@ -165,16 +165,19 @@
                     <input class="pr-modalentry" name="edit_packable_cost" type="text" maxlength="32" value="0.00" placeholder="Please enter a number!" required>
                 </p>
                 <p>
-                    <label>Source or vendor</label><br>
+                    <label>Vendor (source of acquisition)</label><br>
                     <input class="pr-modalentry" name="edit_packable_vendor" type="text" maxlength="256" placeholder="Where can you get this?">
                 </p>
                 <p>
                     <label for="editPackableConsumable">Consumable (not included in base weight)?</label><br>
                     <input id="editPackableConsumable" type="checkbox" name="edit_packable_consumable" value="true">
                 </p>
+                <p hidden>
+                    <input id="editPackableId" name="edit_packable_id" type="text" maxlength="256">
+                </p>
                 <p class="pr-modalbuttons">
                     <span title="Update this packable" onclick="validateEditPackableForm();" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> Save</span>
-                    <span title="Delete this packable" onclick="closeModal('editorModal');" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
+                    <span title="Delete this packable" onclick="deletePackable();" class="pr-loadout-button"><i class="w3-large fas fa-times-circle pr-logo-red"></i> Delete</span>
                     <span title="Cancel without modifying anything" onclick="closeModal('editorModal');" class="pr-loadout-button"><i class="w3-large fas fa-undo-alt pr-logo-blue"></i> Cancel</span>
                 </p>
             </form>
@@ -185,4 +188,49 @@
         </footer>
     </div>
 </div>
+
+
+
+
+<!-- Message modal -->
+<div id="messageModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-bottom w3-card-4" style="width: 580px">
+        <header class="w3-container pr-greenbox"> 
+        <span onclick="closeModal('messageModal');" class="w3-button w3-display-topright"><i class="fas fa-times"></i></span>
+        <h4><i class="fas fa-box"></i> Packables</h4>
+        </header>
+
+        <!-- Message body -->
+        <div class="w3-container pr-modalbody">
+            <p class="w3-medium">
+                {{ modalMessage }}
+            </p>
+            <p class="pr-modalbuttons">
+                <span title="Acknowledge message" onclick="closeModal('messageModal');" class="pr-loadout-button"><i class="w3-large fas fa-check-circle pr-logo-green"></i> OK</span>
+            </p>    
+        </div>
+
+        <footer class="w3-container pr-greenbox">
+        <p> </p>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Hidden container for the "delete packable" form -->
+<div hidden>
+    <form name="delete_packable_form" action="{% url 'delete-packable' %}" method="POST">
+        {% csrf_token %}
+        <input id="deletePackableId" name="delete_packable_id" type="text" maxlength="256">
+    </form>
+</div>
+{% endblock %}
+
+
+{% block additional_javascript %}
+    {% if modalMessage %}
+        <script>
+            openModal('messageModal');
+        </script>
+    {% endif %}
 {% endblock %}

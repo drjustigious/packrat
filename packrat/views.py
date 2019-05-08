@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
+
 import packrat.models as models
+
+import decimal
 
 
 
@@ -12,7 +15,8 @@ def index(request):
     context = {}
     return render(request, 'packrat/index.html', context)
 
-def packables(request):
+
+def packables(request, operationMessage=""):
     """
     The Packables view page.
     """
@@ -23,7 +27,25 @@ def packables(request):
         "numPackablesFound": len(listPackables)
     }
 
+    # Construct a message to be shown in a box when the page loads
+    modalMessage = ""
+
+    if (operationMessage != ""):
+        # TODO: once this part works with intended input, silently ignore parsing errors (likely from hacker input)
+        messageVerb, messageNoun = operationMessage.split(":")
+
+        if (messageVerb == "created"):
+            modalMessage = "New packable \""+messageNoun+"\" created."
+        elif (messageVerb == "updated"):
+            modalMessage = "Packable \""+messageNoun+"\" updated."
+        elif (messageVerb == "deleted"):
+            modalMessage = "Packable \""+messageNoun+"\" deleted."
+
+    if modalMessage != "":
+        context["modalMessage"] = modalMessage
+
     return render(request, 'packrat/packables.html', context)
+
 
 def info(request):
     """
@@ -102,35 +124,47 @@ def new_packable(request):
 
     newPackable.save()
 
-    """
-    respDict = {
-        "name": newPackable.name,
-        "description": newPackable.description,
-        "mass": newPackable.mass,
-        "cost": newPackable.cost,
-        "vendor": newPackable.vendor,
-        "is_consumable": newPackable.is_consumable
-    }
-    """
-
-    listPackables = models.Packable.objects.all()
-
-    context = {
-        "newPackable": newPackable.name,
-        "listPackables": listPackables,
-        "numPackablesFound": len(listPackables)
-    }
-
-    return render(request, 'packrat/packables.html', context)
+    return redirect('packables', operationMessage="created:"+newPackable.name)
 
 
 def edit_packable(request):
     """
     Edits an existing packable.
     """
-    listPackables = models.Packable.objects.all()
+    # HTML forms only support GET and POST, so we use POST to modify records
+    if request.method != "POST":
+        return
 
-    context = {
-        "listPackables": listPackables,
-        "numPackablesFound": len(listPackables)
-    }
+    # Find the target record via the private key
+    # This will raise the error models.Packable.DoesNotExist if the given id doesn't exist in the DB
+    updatedPackable = models.Packable.objects.get( id = int(request.POST["edit_packable_id"]) )
+
+    # Make changes according to what the user entered in the form
+    updatedPackable.name = request.POST["edit_packable_name"]
+    updatedPackable.description = request.POST["edit_packable_description"]
+    updatedPackable.mass = float(request.POST["edit_packable_mass"])
+    updatedPackable.cost = decimal.Decimal(request.POST["edit_packable_mass"])
+    updatedPackable.vendor = request.POST["edit_packable_vendor"]
+    updatedPackable.is_consumable = ("edit_packable_consumable" in request.POST)
+
+    updatedPackable.save()
+
+    return redirect('packables', operationMessage="updated:"+updatedPackable.name)
+
+
+def delete_packable(request):
+    """
+    Deletes an existing packable.
+    """
+
+    # HTML forms only support GET and POST, so we use POST to modify records
+    if request.method != "POST":
+        return
+
+    # Find the target record via the private key
+    # This will raise the error Packable.DoesNotExist if the given id doesn't exist in the DB
+    deletedPackable = models.Packable.objects.get( id = int(request.POST["delete_packable_id"]) )
+    deletedName = deletedPackable.name
+    deletedPackable.delete()
+
+    return redirect('packables', operationMessage="deleted:"+deletedName)
